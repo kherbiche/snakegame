@@ -91,5 +91,6 @@
 	</build>
 
 	<modules>
+		<module>server</module>
 	</modules>
 </project>
