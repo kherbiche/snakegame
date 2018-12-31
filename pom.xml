@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>am.zgh.snakegame</groupId>
+	<artifactId>root</artifactId>
+	<version>0.0.1-RELEASE</version>
+	<packaging>pom</packaging>
+	<name>root</name>
+
+	<url>https://github.com/kherbiche/snakegame</url>
+	<inceptionYear>2018</inceptionYear>
+
+	<mailingLists>
+		<mailingList>
+			<name>Lyes Kherbiche</name>
+			<post>kerbiche@gmail.com</post>
+		</mailingList>
+	</mailingLists>
+
+	<developers>
+		<developer>
+			<name>Lyes Kherbiche</name>
+			<email>kerbiche@gmail.com</email>
+			<timezone>+2</timezone>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+				<role>committer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>GNU LESSER GENERAL PUBLIC LICENSE</name>
+			<url>http://www.gnu.org/licenses/lgpl-3.0.en.html</url>
+			<comments>
+				Copyright (C) 2008-2018 ansejNextGen. 
+
+				ansejNextGen is free software: you can redistribute it and/or modify 
+				it under the terms of the GNU Lesser General Public License as published by 
+				the Free Software Foundation, either version 3 of the License, or 
+				(at your option) any later version. 
+
+				ansejNextGen is distributed in the hope that it will be useful, 
+				but WITHOUT ANY WARRANTY; without even the implied warranty of 
+				MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+				GNU Lesser General Public License for more details.
+			</comments>
+		</license>
+	</licenses>
+
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/kherbiche/snakegame.git</url>
+	</issueManagement>
+	<scm>
+		<connection>scm:git:git@github.com/kherbiche/snakegame.git</connection>
+		<developerConnection>scm:git:git@github.com/kherbiche/snakegame.git</developerConnection>
+		<url>https://github.com/kherbiche/snakegame.git</url>
+		<tag>HEAD</tag>
+	</scm>
+	<ciManagement>
+		<system>Travis CI</system>
+		<url>https://travis-ci.com/kherbiche/snakegame</url>
+		<notifiers />
+	</ciManagement>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.5</version>
+					<configuration>
+						<source>${maven.compiler.source}</source>
+						<target>${maven.compiler.target}</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<modules>
+	</modules>
+</project>
