@@ -34,20 +34,19 @@
 
 	<licenses>
 		<license>
-			<name>GNU LESSER GENERAL PUBLIC LICENSE</name>
-			<url>http://www.gnu.org/licenses/lgpl-3.0.en.html</url>
+			<name>Apache License 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
 			<comments>
-				Copyright (C) 2008-2018 ansejNextGen. 
+				Copyright 2018-2019 snakegame_Lyes_Kherbiche. 
 
-				ansejNextGen is free software: you can redistribute it and/or modify 
-				it under the terms of the GNU Lesser General Public License as published by 
-				the Free Software Foundation, either version 3 of the License, or 
-				(at your option) any later version. 
+				snakegame_Lyes_Kherbiche is free software: you can redistribute it and/or modify 
+				it under the terms of the Apache License 2.0 as published by 
+				the Free Software Foundation. 
 
-				ansejNextGen is distributed in the hope that it will be useful, 
+				snakegame_Lyes_Kherbiche is distributed in the hope that it will be useful, 
 				but WITHOUT ANY WARRANTY; without even the implied warranty of 
 				MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
-				GNU Lesser General Public License for more details.
+				Apache License 2.0 for more details.
 			</comments>
 		</license>
 	</licenses>
