@@ -4,11 +4,15 @@
  */
 package am.zgh.snakegame.server;
 
+import java.awt.Dimension;
+import java.awt.Graphics;
+
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
- * The <code>GameFrame</code> class represents the container in witch to display
- * the game.
+ * The <code>GameFrame</code> class represents the <b>local</b> container in
+ * witch to display the game.
  * 
  * @author L KHERBICHE
  * @since 0.0.1-RELEASE
@@ -16,4 +20,48 @@ import javax.swing.JFrame;
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame {
 
+	private GameModel gm;
+
+	public GameFrame() {
+
+		super("Snake");
+		gm = new GameModel();
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setResizable(false);
+
+		final JPanel content = new JPanel() {
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				GameFrame.this.gm.display(g);
+			}
+		};
+		content.setPreferredSize(new Dimension(300, 300));
+		setContentPane(content);
+		
+		Thread thread = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				while(true) {
+					GameFrame.this.gm.calculate();
+					content.repaint();
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			
+		});
+		thread.start();
+	}
+
+	public static void main(String[] args) {
+		GameFrame gf = new GameFrame();
+		gf.pack();
+		gf.setLocationRelativeTo(null);
+		gf.setVisible(true);
+	}
 }
