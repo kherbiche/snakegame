@@ -17,52 +17,40 @@
  */
 package am.zgh.snakegame.server;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.util.LinkedList;
+
 /**
- * The <code>Square</code> class represents
+ * The <code>Snake</code> class represents
  * 
  * @author Lyes KHERBICHE {@literal <kerbiche@gmail.com>}
  * @since 0.0.1-RELEASE
  */
-public class Square implements Constants {
+public class Snake {
 
-	private int xIndex;
-	private int yIndex;
+	private LinkedList<Square> list;
 
-	public Square(int xIndex, int yIndex) {
-		super();
-		this.xIndex = xIndex;
-		this.yIndex = yIndex;
+	public Snake() {
+		list = new LinkedList<Square>();
+		list.add(new Square(14, 15));
+		list.add(new Square(15, 15));
+		list.add(new Square(16, 15));
 	}
 
-	public int getxIndex() {
-		return xIndex;
+	public void calculate() {
+		
 	}
 
-	public void setxIndex(int xIndex) {
-		this.xIndex = xIndex;
+	public void display(Graphics g) {
+
+		Graphics2D g2 = (Graphics2D)g;
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+		for(Square box : list) {
+			g.fillOval(box.getX(), box.getY(), box.getWidth(), box.getHight());
+		}
 	}
 
-	public int getyIndex() {
-		return yIndex;
-	}
-
-	public void setyIndex(int yIndex) {
-		this.yIndex = yIndex;
-	}
-
-	public int getX() {
-		return xIndex * PIX_SQUARE;
-	}
-
-	public int getY() {
-		return yIndex * PIX_SQUARE;
-	}
-
-	public int getWidth() {
-		return PIX_SQUARE;
-	}
-
-	public int getHight() {
-		return PIX_SQUARE;
-	}
 }

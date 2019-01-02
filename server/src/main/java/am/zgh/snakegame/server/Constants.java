@@ -20,7 +20,7 @@ package am.zgh.snakegame.server;
 /**
  * The <code>Constants</code> inteface represents
  * 
- * @author L KHERBICHE
+ * @author Lyes KHERBICHE {@literal <kerbiche@gmail.com>}
  * @since 0.0.1-RELEASE
  */
 public interface Constants {

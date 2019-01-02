@@ -28,11 +28,11 @@ import javax.swing.JPanel;
  * The <code>GameFrame</code> class represents the <b>local</b> container in
  * witch to display the game.
  * 
- * @author L KHERBICHE
+ * @author Lyes KHERBICHE {@literal <kerbiche@gmail.com>}
  * @since 0.0.1-RELEASE
  */
 @SuppressWarnings("serial")
-public class GameFrame extends JFrame {
+public class GameFrame extends JFrame implements Constants {
 
 	private GameModel gm;
 
@@ -50,14 +50,14 @@ public class GameFrame extends JFrame {
 				GameFrame.this.gm.display(g);
 			}
 		};
-		content.setPreferredSize(new Dimension(300, 300));
+		content.setPreferredSize(new Dimension(NBR_OF_COL * PIX_SQUARE, NBR_OF_LIGN * PIX_SQUARE));
 		setContentPane(content);
-		
+
 		Thread thread = new Thread(new Runnable() {
 
 			@Override
 			public void run() {
-				while(true) {
+				while (true) {
 					GameFrame.this.gm.calculate();
 					content.repaint();
 					try {
@@ -67,7 +67,7 @@ public class GameFrame extends JFrame {
 					}
 				}
 			}
-			
+
 		});
 		thread.start();
 	}

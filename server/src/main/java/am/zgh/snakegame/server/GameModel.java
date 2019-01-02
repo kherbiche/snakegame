@@ -22,14 +22,22 @@ import java.awt.Graphics;
 /**
  * The <code>GameModel</code> class represents
  * 
- * @author L KHERBICHE
+ * @author Lyes KHERBICHE {@literal <kerbiche@gmail.com>}
  * @since 0.0.1-RELEASE
  */
 public class GameModel {
 
+	private Snake snake ;
+
+	public GameModel() {
+		snake = new Snake();
+	}
+
 	public void calculate() {
+		snake.calculate();
 	}
 
 	public void display(Graphics g) {
+		snake.display(g);
 	}
 }
