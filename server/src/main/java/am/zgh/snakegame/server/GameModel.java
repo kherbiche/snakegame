@@ -17,6 +17,9 @@
  */
 package am.zgh.snakegame.server;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 
 /**
@@ -27,17 +30,31 @@ import java.awt.Graphics;
  */
 public class GameModel {
 
-	private Snake snake ;
+	private Snake snake;
+	private boolean gameOver;
 
 	public GameModel() {
 		snake = new Snake();
+		gameOver = false;
 	}
 
 	public void calculate() {
 		snake.calculate();
+		if (snake.isDead()) {
+			gameOver = true;
+		}
 	}
 
 	public void display(Graphics g) {
 		snake.display(g);
+		if (gameOver) {
+			String str = "Game Over";
+			g.setColor(Color.RED);
+			g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 50));
+			FontMetrics fm = g.getFontMetrics();
+			int x = (g.getClipBounds().width - fm.stringWidth(str)) / 2;
+			int y = (g.getClipBounds().height / 2) + fm.getMaxDescent();
+			g.drawString(str, x, y);
+		}
 	}
 }

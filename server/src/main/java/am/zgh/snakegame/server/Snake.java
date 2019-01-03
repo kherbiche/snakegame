@@ -32,6 +32,7 @@ public class Snake {
 
 	private LinkedList<Square> list;
 	private Direction direction;
+	private boolean isDead;
 
 	public Snake() {
 		list = new LinkedList<Square>();
@@ -42,7 +43,16 @@ public class Snake {
 	}
 
 	public void calculate() {
-		move();
+
+		if(canMove()) {
+			move();
+		} else {
+			isDead = true;
+		}
+	}
+
+	public boolean isDead() {
+		return isDead;
 	}
 
 	public void display(Graphics g) {
@@ -76,4 +86,9 @@ public class Snake {
 		list.removeLast();
 	}
 
+	private boolean canMove() {
+		return getNextSquare().isValide();
+	}
+
+	
 }

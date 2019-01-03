@@ -65,4 +65,8 @@ public class Square implements Constants {
 	public int getHight() {
 		return PIX_SQUARE;
 	}
+
+	public boolean isValide() {
+		return xIndex >= 0 && xIndex < NBR_OF_COL && yIndex >= 0 && yIndex < NBR_OF_LIGN;
+	}
 }
