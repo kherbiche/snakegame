@@ -32,6 +32,7 @@ public class Snake {
 
 	private LinkedList<Square> list;
 	private Direction direction;
+	private Direction userPressedKey;
 	private boolean isDead;
 
 	public Snake() {
@@ -44,16 +45,19 @@ public class Snake {
 
 	public void calculate() {
 
-		if(canMove()) {
+		turn();
+		if (canMove()) {
 			move();
 		} else {
 			isDead = true;
 		}
 	}
 
+
 	public boolean isDead() {
 		return isDead;
 	}
+
 
 	public void display(Graphics g) {
 
@@ -64,6 +68,12 @@ public class Snake {
 			g2.fillOval(box.getX(), box.getY(), box.getWidth(), box.getHight());
 		}
 	}
+
+
+	public void setUserPressedKey(Direction key) {
+		userPressedKey = key;
+	}
+
 
 	private Square getNextSquare() {
 
@@ -90,5 +100,25 @@ public class Snake {
 		return getNextSquare().isValide();
 	}
 
-	
+	private void turn() {
+
+		if (userPressedKey != null) {
+			if (direction == Direction.UP || direction == Direction.DOWN) {
+				if (userPressedKey == Direction.LEFT) {
+					direction = Direction.LEFT;
+				} else if (userPressedKey == Direction.RIGHT) {
+					direction = Direction.RIGHT;
+				}
+			} else {
+				if (direction == Direction.LEFT || direction == Direction.RIGHT) {
+					if (userPressedKey == Direction.UP) {
+						direction = Direction.UP;
+					} else if (userPressedKey == Direction.DOWN) {
+						direction = Direction.DOWN;
+					}
+				}
+			}
+		}
+		userPressedKey = null;
+	}
 }

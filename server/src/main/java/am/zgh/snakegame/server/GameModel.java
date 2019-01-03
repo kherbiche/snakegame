@@ -21,6 +21,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 
 /**
  * The <code>GameModel</code> class represents
@@ -55,6 +56,20 @@ public class GameModel {
 			int x = (g.getClipBounds().width - fm.stringWidth(str)) / 2;
 			int y = (g.getClipBounds().height / 2) + fm.getMaxDescent();
 			g.drawString(str, x, y);
+		}
+	}
+
+	public void manageKeyBoard(KeyEvent key) {
+
+		switch (key.getKeyCode()) {
+		case KeyEvent.VK_KP_RIGHT:
+			snake.setUserPressedKey(Direction.RIGHT);
+		case KeyEvent.VK_LEFT:
+			snake.setUserPressedKey(Direction.LEFT);
+		case KeyEvent.VK_UP:
+			snake.setUserPressedKey(Direction.UP);
+		case KeyEvent.VK_DOWN:
+			snake.setUserPressedKey(Direction.DOWN);
 		}
 	}
 }

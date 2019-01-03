@@ -20,6 +20,8 @@ package am.zgh.snakegame.server;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -34,12 +36,12 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame implements Constants {
 
-	private GameModel gm;
+	private GameModel gameModel;
 
 	public GameFrame() {
 
 		super("Snake");
-		gm = new GameModel();
+		gameModel = new GameModel();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 
@@ -47,18 +49,27 @@ public class GameFrame extends JFrame implements Constants {
 			@Override
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				GameFrame.this.gm.display(g);
+				gameModel.display(g);
 			}
 		};
 		content.setPreferredSize(new Dimension(NBR_OF_COL * PIX_SQUARE, NBR_OF_LIGN * PIX_SQUARE));
+		content.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				gameModel.manageKeyBoard(e);
+			}
+		});
+
 		setContentPane(content);
+		setFocusable(false);
+		content.setFocusable(true);
 
 		Thread thread = new Thread(new Runnable() {
 
 			@Override
 			public void run() {
 				while (true) {
-					GameFrame.this.gm.calculate();
+					GameFrame.this.gameModel.calculate();
 					content.repaint();
 					try {
 						Thread.sleep(500);
