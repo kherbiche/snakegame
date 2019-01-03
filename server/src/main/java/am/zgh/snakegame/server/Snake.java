@@ -31,26 +31,49 @@ import java.util.LinkedList;
 public class Snake {
 
 	private LinkedList<Square> list;
+	private Direction direction;
 
 	public Snake() {
 		list = new LinkedList<Square>();
 		list.add(new Square(14, 15));
 		list.add(new Square(15, 15));
 		list.add(new Square(16, 15));
+		direction = Direction.LEFT;
 	}
 
 	public void calculate() {
-		
+		move();
 	}
 
 	public void display(Graphics g) {
 
-		Graphics2D g2 = (Graphics2D)g;
+		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-		for(Square box : list) {
-			g.fillOval(box.getX(), box.getY(), box.getWidth(), box.getHight());
+		for (Square box : list) {
+			g2.fillOval(box.getX(), box.getY(), box.getWidth(), box.getHight());
 		}
+	}
+
+	private Square getNextSquare() {
+
+		Square head = list.getFirst();
+		switch (direction) {
+		case UP:
+			return new Square(head.getxIndex(), head.getyIndex() - 1);
+		case DOWN:
+			return new Square(head.getxIndex(), head.getyIndex() + 1);
+		case RIGHT:
+			return new Square(head.getxIndex() + 1, head.getyIndex());
+		case LEFT:
+			return new Square(head.getxIndex() - 1, head.getyIndex());
+		}
+		return null;
+	}
+
+	private void move() {
+		list.addFirst(getNextSquare());
+		list.removeLast();
 	}
 
 }
