@@ -32,10 +32,12 @@ import java.awt.event.KeyEvent;
 public class GameModel {
 
 	private Snake snake;
+	private Frog frog;
 	private boolean gameOver;
 
 	public GameModel() {
 		snake = new Snake();
+		frog = new Frog();
 		gameOver = false;
 	}
 
@@ -50,6 +52,7 @@ public class GameModel {
 
 	public void display(Graphics g) {
 		snake.display(g);
+		frog.display(g);
 		if (gameOver) {
 			String str = "Game Over";
 			g.setColor(Color.RED);
