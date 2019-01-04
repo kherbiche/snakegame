@@ -54,26 +54,24 @@ public class Snake {
 	}
 
 
-	public boolean isDead() {
-		return isDead;
-	}
-
-
 	public void display(Graphics g) {
 
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 		for (Square box : list) {
-			g2.fillOval(box.getX(), box.getY(), box.getWidth(), box.getHight());
+			g.fillOval(box.getX(), box.getY(), box.getWidth(), box.getHight());
 		}
 	}
 
 
+	public boolean isDead() {
+		return isDead;
+	}
+
 	public void setUserPressedKey(Direction key) {
 		userPressedKey = key;
 	}
-
 
 	private Square getNextSquare() {
 
@@ -110,15 +108,13 @@ public class Snake {
 					direction = Direction.RIGHT;
 				}
 			} else {
-				if (direction == Direction.LEFT || direction == Direction.RIGHT) {
-					if (userPressedKey == Direction.UP) {
-						direction = Direction.UP;
-					} else if (userPressedKey == Direction.DOWN) {
-						direction = Direction.DOWN;
-					}
+				if (userPressedKey == Direction.UP) {
+					direction = Direction.UP;
+				} else if (userPressedKey == Direction.DOWN) {
+					direction = Direction.DOWN;
 				}
 			}
+			userPressedKey = null;
 		}
-		userPressedKey = null;
 	}
 }

@@ -65,7 +65,6 @@ public class GameFrame extends JFrame implements Constants {
 		content.setFocusable(true);
 
 		Thread thread = new Thread(new Runnable() {
-
 			@Override
 			public void run() {
 				while (true) {
