@@ -40,9 +40,11 @@ public class GameModel {
 	}
 
 	public void calculate() {
-		snake.calculate();
-		if (snake.isDead()) {
-			gameOver = true;
+		if (!gameOver) {
+			snake.calculate();
+			if (snake.isDead()) {
+				gameOver = true;
+			}
 		}
 	}
 
