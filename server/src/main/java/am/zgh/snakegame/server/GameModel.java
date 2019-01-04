@@ -43,7 +43,7 @@ public class GameModel {
 
 	public void calculate() {
 		if (!gameOver) {
-			snake.calculate();
+			snake.calculate(frog);
 			if (snake.isDead()) {
 				gameOver = true;
 			}

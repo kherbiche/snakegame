@@ -43,16 +43,18 @@ public class Snake {
 		direction = Direction.LEFT;
 	}
 
-	public void calculate() {
+	public void calculate(Frog frog) {
 
 		turn();
-		if (canMove()) {
+		if (canEat(frog)) {
+			eat();
+			frog.newFrog();
+		} else if (canMove()) {
 			move();
 		} else {
 			isDead = true;
 		}
 	}
-
 
 	public void display(Graphics g) {
 
@@ -63,7 +65,6 @@ public class Snake {
 			g.fillOval(box.getX(), box.getY(), box.getWidth(), box.getHight());
 		}
 	}
-
 
 	public boolean isDead() {
 		return isDead;
@@ -116,5 +117,14 @@ public class Snake {
 			}
 			userPressedKey = null;
 		}
+	}
+
+	private void eat() {
+		list.addFirst(getNextSquare());
+	}
+
+	private boolean canEat(Frog frog) {
+		Square square = getNextSquare();
+		return square.getxIndex() == frog.getxIndex() && square.getyIndex() == frog.getyIndex();
 	}
 }
