@@ -96,7 +96,8 @@ public class Snake {
 	}
 
 	private boolean canMove() {
-		return getNextSquare().isValide();
+		Square square = getNextSquare();
+		return square.isValide() && !list.contains(square);
 	}
 
 	private void turn() {

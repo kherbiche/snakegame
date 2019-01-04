@@ -69,4 +69,13 @@ public class Square implements Constants {
 	public boolean isValide() {
 		return xIndex >= 0 && xIndex < NBR_OF_COL && yIndex >= 0 && yIndex < NBR_OF_LIGN;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Square) {
+			Square square = (Square)obj;
+			return xIndex == square.getxIndex() && yIndex == square.getyIndex();
+		}
+		return false;
+	}
 }
