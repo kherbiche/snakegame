@@ -62,6 +62,9 @@ public class GameModel {
 			int y = (g.getClipBounds().height / 2) + fm.getMaxDescent();
 			g.drawString(str, x, y);
 		}
+		g.setColor(Color.GREEN);
+		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
+		g.drawString(String.valueOf(getLevel()), 5, 25);
 	}
 
 	public void manageKeyBoard(KeyEvent key) {
@@ -80,5 +83,9 @@ public class GameModel {
 			snake.setUserPressedKey(Direction.DOWN);
 			break;
 		}
+	}
+
+	private int getLevel() {
+		return (snake.getEatCount() / 5) + 1;
 	}
 }

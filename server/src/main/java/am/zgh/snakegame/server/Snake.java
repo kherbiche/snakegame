@@ -34,6 +34,7 @@ public class Snake {
 	private Direction direction;
 	private Direction userPressedKey;
 	private boolean isDead;
+	private int eatCount;
 
 	public Snake() {
 		list = new LinkedList<Square>();
@@ -72,6 +73,10 @@ public class Snake {
 
 	public void setUserPressedKey(Direction key) {
 		userPressedKey = key;
+	}
+
+	public int getEatCount() {
+		return eatCount;
 	}
 
 	private Square getNextSquare() {
@@ -121,6 +126,7 @@ public class Snake {
 	}
 
 	private void eat() {
+		eatCount++;
 		list.addFirst(getNextSquare());
 	}
 
