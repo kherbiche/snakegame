@@ -85,6 +85,32 @@ public class GameModel {
 		}
 	}
 
+	public int getTempo() {
+
+		switch (getLevel()) {
+		case 1:
+			return 500;
+		case 2:
+			return 400;
+		case 3:
+			return 350;
+		case 4:
+			return 300;
+		case 5:
+			return 250;
+		case 6:
+			return 200;
+		case 7:
+			return 160;
+		case 8:
+			return 120;
+		case 9:
+			return 80;
+		default:
+			return 50;
+		}
+	}
+
 	private int getLevel() {
 		return (snake.getEatCount() / 5) + 1;
 	}

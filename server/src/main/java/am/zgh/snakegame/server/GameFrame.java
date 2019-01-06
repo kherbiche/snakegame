@@ -71,7 +71,7 @@ public class GameFrame extends JFrame implements Constants {
 					GameFrame.this.gameModel.calculate();
 					content.repaint();
 					try {
-						Thread.sleep(500);
+						Thread.sleep(gameModel.getTempo());
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
