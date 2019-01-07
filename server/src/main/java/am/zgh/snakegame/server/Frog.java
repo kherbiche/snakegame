@@ -19,6 +19,8 @@ package am.zgh.snakegame.server;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.util.Random;
 
 /**
@@ -30,6 +32,7 @@ import java.util.Random;
 public class Frog extends Square {
 
 	private final static Random RND = new Random();
+	private int angle;
 
 
 	public Frog() {
@@ -46,10 +49,25 @@ public class Frog extends Square {
 	public void newFrog() {
 		setxIndex(getRandomX());
 		setyIndex(getRandomY());
+		angle = 0;
+	}
+
+	public void calculate() {
+		angle += 4;
+		if (angle > 360) {
+			angle = 360;
+		}
 	}
 
 	public void display(Graphics g) {
+
+		Graphics2D g2D = (Graphics2D)g;
+		AffineTransform afTran = g2D.getTransform();
+		g2D.setTransform(AffineTransform.getRotateInstance(Math.toRadians(angle), getX() + getWidth()/2, getY() + getHight()/2));
+		
 		g.setColor(Color.red);
 		g.fillRect(getX() + 2, getY() + 2, getWidth() - 4, getHight() - 4);
+
+		g2D.setTransform(afTran);
 	}
 }

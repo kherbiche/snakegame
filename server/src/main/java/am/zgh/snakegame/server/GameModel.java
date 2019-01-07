@@ -43,6 +43,7 @@ public class GameModel {
 
 	public void calculate() {
 		if (!gameOver) {
+			frog.calculate();
 			snake.calculate(frog, getLevel());
 			if (snake.isDead()) {
 				gameOver = true;
