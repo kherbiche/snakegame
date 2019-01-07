@@ -28,5 +28,6 @@ public interface Constants {
 	public final static int NBR_OF_COL = 30;
 	public final static int NBR_OF_LIGN = 30;
 	public final static int PIX_SQUARE = 15;
+	public final static int FPS = 25;
 
 }

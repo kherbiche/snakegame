@@ -43,7 +43,7 @@ public class GameModel {
 
 	public void calculate() {
 		if (!gameOver) {
-			snake.calculate(frog);
+			snake.calculate(frog, getLevel());
 			if (snake.isDead()) {
 				gameOver = true;
 			}
@@ -85,6 +85,7 @@ public class GameModel {
 		}
 	}
 
+	@Deprecated
 	public int getTempo() {
 
 		switch (getLevel()) {

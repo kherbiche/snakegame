@@ -35,6 +35,7 @@ public class Snake {
 	private Direction userPressedKey;
 	private boolean isDead;
 	private int eatCount;
+	private int calculateCall;
 
 	public Snake() {
 		list = new LinkedList<Square>();
@@ -44,16 +45,20 @@ public class Snake {
 		direction = Direction.LEFT;
 	}
 
-	public void calculate(Frog frog) {
+	public void calculate(Frog frog, int level) {
 
-		turn();
-		if (canEat(frog)) {
-			eat();
-			frog.newFrog();
-		} else if (canMove()) {
-			move();
-		} else {
-			isDead = true;
+		calculateCall++;
+		if(calculateCall >= getThresholdCounter(level)) {
+			calculateCall = 0;
+			turn();
+			if (canEat(frog)) {
+				eat();
+				frog.newFrog();
+			} else if (canMove()) {
+				move();
+			} else {
+				isDead = true;
+			}
 		}
 	}
 
@@ -133,5 +138,30 @@ public class Snake {
 	private boolean canEat(Frog frog) {
 		Square square = getNextSquare();
 		return square.getxIndex() == frog.getxIndex() && square.getyIndex() == frog.getyIndex();
+	}
+
+	private int getThresholdCounter(int level) {
+		switch (level) {
+		case 1:
+			return 20;
+		case 2:
+			return 16;
+		case 3:
+			return 14;
+		case 4:
+			return 12;
+		case 5:
+			return 10;
+		case 6:
+			return 8;
+		case 7:
+			return 6;
+		case 8:
+			return 4;
+		case 9:
+			return 3;
+		default:
+			return 2;
+		}
 	}
 }
