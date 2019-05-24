@@ -33,6 +33,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 * **Lyes Kherbiche** - *Work* - [Code](https://github.com/kherbiche/snakegame)
 
+## Web Site
+
+[Snakegame.io](https://kherbiche.github.io/snakegame/)
+
 ## License
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
