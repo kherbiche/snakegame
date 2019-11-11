@@ -25,6 +25,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  * The <code>GameFrame</code> class represents the <b>local</b> container in
@@ -39,8 +40,14 @@ public class GameFrame extends JFrame implements Constants {
 	private GameModel gameModel;
 
 	public GameFrame() {
-
 		super("Snake");
+
+		if (SwingUtilities.isEventDispatchThread()) {
+			System.out.println("-- GameFrame()1 In EDT");
+		}	else {
+				System.out.println("-- GameFrame()1 ! EDT");
+			}
+
 		gameModel = new GameModel();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
@@ -64,10 +71,23 @@ public class GameFrame extends JFrame implements Constants {
 		setFocusable(false);
 		content.setFocusable(true);
 
+		if (SwingUtilities.isEventDispatchThread()) {
+			System.out.println("-- GameFrame()2 In EDT");
+		}	else {
+				System.out.println("-- GameFrame()2 ! EDT");
+			}
+		
 		Thread thread = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				while (true) {
+
+					if (SwingUtilities.isEventDispatchThread()) {
+						System.out.println("-- GameFrame()3 In EDT");
+					}	else {
+							System.out.println("-- GameFrame()3 ! EDT");
+						}
+
 					GameFrame.this.gameModel.calculate();
 					content.repaint();
 					try {
@@ -83,9 +103,24 @@ public class GameFrame extends JFrame implements Constants {
 	}
 
 	public static void main(String[] args) {
-		GameFrame gf = new GameFrame();
-		gf.pack();
-		gf.setLocationRelativeTo(null);
-		gf.setVisible(true);
+
+		Runnable code = new Runnable() {
+			@Override
+			public void run() {
+				GameFrame gf = new GameFrame();
+				gf.pack();
+				gf.setLocationRelativeTo(null);
+				gf.setVisible(true);
+			}
+		};
+
+		
+		if (SwingUtilities.isEventDispatchThread()) {
+			System.out.println("-- main() In EDT");
+			code.run();
+		}	else {
+				System.out.println("-- main() ! EDT");
+				SwingUtilities.invokeLater(code);
+			}
 	}
 }
