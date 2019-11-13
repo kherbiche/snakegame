@@ -22,6 +22,8 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.util.LinkedList;
 
+import javax.swing.SwingUtilities;
+
 /**
  * The <code>Snake</code> class represents
  * 
@@ -38,6 +40,11 @@ public class Snake {
 	private int calculateCall;
 
 	public Snake() {
+		if (SwingUtilities.isEventDispatchThread()) {
+			System.out.println("-- Snake() In EDT");
+		}	else {
+				System.out.println("-- Snake() ! EDT");
+			}
 		list = new LinkedList<Square>();
 		list.add(new Square(14, 15));
 		list.add(new Square(15, 15));
@@ -47,6 +54,11 @@ public class Snake {
 
 	public void calculate(Frog frog, int level) {
 
+		if (SwingUtilities.isEventDispatchThread()) {
+			System.out.println("-- Snake -> calculate(Frog frog, int level) In EDT");
+		}	else {
+				System.out.println("-- Snake -> calculate(Frog frog, int level) ! EDT");
+			}
 		calculateCall++;
 		if(calculateCall >= getThresholdCounter(level)) {
 			calculateCall = 0;
@@ -64,6 +76,11 @@ public class Snake {
 
 	public void display(Graphics g) {
 
+		if (SwingUtilities.isEventDispatchThread()) {
+			System.out.println("-- Snake -> display(Graphics g) In EDT");
+		}	else {
+				System.out.println("-- Snake -> display(Graphics g) ! EDT");
+			}
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -112,6 +129,11 @@ public class Snake {
 
 	private void turn() {
 
+		if (SwingUtilities.isEventDispatchThread()) {
+			System.out.println("-- Snake -> turn() In EDT");
+		}	else {
+				System.out.println("-- Snake -> turn() ! EDT");
+			}
 		if (userPressedKey != null) {
 			if (direction == Direction.UP || direction == Direction.DOWN) {
 				if (userPressedKey == Direction.LEFT) {

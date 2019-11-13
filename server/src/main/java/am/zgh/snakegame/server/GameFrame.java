@@ -55,6 +55,11 @@ public class GameFrame extends JFrame implements Constants {
 		final JPanel content = new JPanel() {
 			@Override
 			protected void paintComponent(Graphics g) {
+				if (SwingUtilities.isEventDispatchThread()) {
+					System.out.println("-- GameFrame() -> paintComponent(Graphics g) In EDT");
+				}	else {
+						System.out.println("-- GameFrame() -> paintComponent(Graphics g) ! EDT");
+					}
 				super.paintComponent(g);
 				gameModel.display(g);
 			}
@@ -63,6 +68,11 @@ public class GameFrame extends JFrame implements Constants {
 		content.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
+				if (SwingUtilities.isEventDispatchThread()) {
+					System.out.println("-- GameFrame() -> keyPressed(KeyEvent e) In EDT");
+				}	else {
+						System.out.println("-- GameFrame() -> pkeyPressed(KeyEvent e ! EDT");
+					}
 				gameModel.manageKeyBoard(e);
 			}
 		});
@@ -77,15 +87,15 @@ public class GameFrame extends JFrame implements Constants {
 				System.out.println("-- GameFrame()2 ! EDT");
 			}
 		
-		Thread thread = new Thread(new Runnable() {
+		Thread thread = new Thread(new Runnable() { // This Thread will exit exec from EDT
 			@Override
 			public void run() {
 				while (true) {
 
 					if (SwingUtilities.isEventDispatchThread()) {
-						System.out.println("-- GameFrame()3 In EDT");
+						System.out.println("-- GameFrame() -> new Thread().run() In EDT");
 					}	else {
-							System.out.println("-- GameFrame()3 ! EDT");
+							System.out.println("-- GameFrame() -> new Thread().run() ! EDT");
 						}
 
 					GameFrame.this.gameModel.calculate();
@@ -103,7 +113,7 @@ public class GameFrame extends JFrame implements Constants {
 	}
 
 	public static void main(String[] args) {
-
+        
 		Runnable code = new Runnable() {
 			@Override
 			public void run() {
@@ -122,5 +132,11 @@ public class GameFrame extends JFrame implements Constants {
 				System.out.println("-- main() ! EDT");
 				SwingUtilities.invokeLater(code);
 			}
+		/*
+		GameFrame gf = new GameFrame();
+		gf.pack();
+		gf.setLocationRelativeTo(null);
+		gf.setVisible(true);
+		*/
 	}
 }

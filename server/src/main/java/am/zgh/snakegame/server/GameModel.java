@@ -23,6 +23,8 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
+import javax.swing.SwingUtilities;
+
 /**
  * The <code>GameModel</code> class represents
  * 
@@ -36,12 +38,22 @@ public class GameModel {
 	private boolean gameOver;
 
 	public GameModel() {
+		if (SwingUtilities.isEventDispatchThread()) {
+			System.out.println("-- GameModel() In EDT");
+		}	else {
+				System.out.println("-- GameModel() ! EDT");
+			}
 		snake = new Snake();
 		frog = new Frog();
 		gameOver = false;
 	}
 
 	public void calculate() {
+		if (SwingUtilities.isEventDispatchThread()) {
+			System.out.println("-- GameModel -> calculate() In EDT");
+		}	else {
+				System.out.println("-- GameModel -> calculate() ! EDT");
+			}
 		if (!gameOver) {
 			frog.calculate();
 			snake.calculate(frog, getLevel());
@@ -52,6 +64,11 @@ public class GameModel {
 	}
 
 	public void display(Graphics g) {
+		if (SwingUtilities.isEventDispatchThread()) {
+			System.out.println("-- GameModel -> display(Graphics g) In EDT");
+		}	else {
+				System.out.println("-- GameModel -> display(Graphics g) ! EDT");
+			}
 		snake.display(g);
 		frog.display(g);
 		if (gameOver) {
@@ -70,6 +87,11 @@ public class GameModel {
 
 	public void manageKeyBoard(KeyEvent key) {
 
+		if (SwingUtilities.isEventDispatchThread()) {
+			System.out.println("-- GameModel -> manageKeyBoard(KeyEvent key) In EDT");
+		}	else {
+				System.out.println("-- GameModel -> manageKeyBoard(KeyEvent key) ! EDT");
+			}
 		switch (key.getKeyCode()) {
 		case KeyEvent.VK_RIGHT:
 			snake.setUserPressedKey(Direction.RIGHT);
