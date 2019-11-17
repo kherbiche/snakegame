@@ -39,7 +39,7 @@ public class GameFrame extends JFrame implements Constants {
 
 	private GameModel gameModel;
 
-	public GameFrame() {
+	public GameFrame(GameModel gameModel) {
 		super("Snake");
 
 		if (SwingUtilities.isEventDispatchThread()) {
@@ -48,7 +48,7 @@ public class GameFrame extends JFrame implements Constants {
 				System.out.println("-- GameFrame()1 ! EDT");
 			}
 
-		gameModel = new GameModel();
+		this.gameModel = gameModel;
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 
@@ -113,11 +113,12 @@ public class GameFrame extends JFrame implements Constants {
 	}
 
 	public static void main(String[] args) {
-        
+
+        GameModel gameModel = new GameModel();
 		Runnable code = new Runnable() {
 			@Override
 			public void run() {
-				GameFrame gf = new GameFrame();
+				GameFrame gf = new GameFrame(gameModel);
 				gf.pack();
 				gf.setLocationRelativeTo(null);
 				gf.setVisible(true);

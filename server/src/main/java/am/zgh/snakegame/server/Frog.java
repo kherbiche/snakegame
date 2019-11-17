@@ -23,6 +23,8 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.util.Random;
 
+import javax.swing.SwingUtilities;
+
 /**
  * The <code>Frog</code> class represents
  * 
@@ -37,6 +39,11 @@ public class Frog extends Square {
 
 	public Frog() {
 		super(getRandomX(), getRandomY());
+		if (SwingUtilities.isEventDispatchThread()) {
+			System.out.println("-- Frog() In EDT");
+		}	else {
+				System.out.println("-- Frog() ! EDT");
+			}
 	}
 
 	private static int getRandomX() {
