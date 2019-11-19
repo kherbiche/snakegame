@@ -55,7 +55,7 @@ public enum SoundEffec {
 	// Constructor
 	SoundEffec(String soundFileName) {
 		try{
-			URL url = this.getClass().getClassLoader().getResource(soundFileName);
+			URL url = this.getClass().getClassLoader().getResource("/" + soundFileName);
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
 			clip = AudioSystem.getClip();
 			clip.open(audioInputStream);
