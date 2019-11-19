@@ -42,7 +42,7 @@ import javax.sound.sampled.LineUnavailableException;
 public enum SoundEffec {
 	EAT("eat.wav"), 					// eating frog
 	GAMEOVER("gameover.wav"),			// gong
-	TOUCH("touch.wav");					//
+	DEAD("dead.wav");					// dead
 
 	// Nested Enum for volume
 	public static enum Volume {
@@ -55,7 +55,7 @@ public enum SoundEffec {
 	// Constructor
 	SoundEffec(String soundFileName) {
 		try{
-			URL url = this.getClass().getClassLoader().getResource("/" + soundFileName);
+			URL url = this.getClass().getClassLoader().getResource(soundFileName);
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
 			clip = AudioSystem.getClip();
 			clip.open(audioInputStream);
@@ -81,7 +81,7 @@ public enum SoundEffec {
 	}
 
 	// Optional static method to pre-load all the sound files.
-	static void init() {
+	public static void init() {
 		values(); // calls the constructor for all the elements
 	}
 }

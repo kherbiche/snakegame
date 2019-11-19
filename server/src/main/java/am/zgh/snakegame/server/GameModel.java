@@ -25,6 +25,8 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.SwingUtilities;
 
+import am.zgh.snakegame.sound.SoundEffec;
+
 /**
  * The <code>GameModel</code> class represents
  * 
@@ -43,6 +45,8 @@ public class GameModel {
 		}	else {
 				System.out.println("-- GameModel() ! EDT");
 			}
+
+		SoundEffec.init();
 		snake = new Snake();
 		frog = new Frog();
 		gameOver = false;
@@ -59,6 +63,7 @@ public class GameModel {
 			snake.calculate(frog, getLevel());
 			if (snake.isDead()) {
 				gameOver = true;
+				SoundEffec.GAMEOVER.play();
 			}
 		}
 	}

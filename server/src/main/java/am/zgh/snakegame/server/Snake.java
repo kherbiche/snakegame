@@ -24,6 +24,8 @@ import java.util.LinkedList;
 
 import javax.swing.SwingUtilities;
 
+import am.zgh.snakegame.sound.SoundEffec;
+
 /**
  * The <code>Snake</code> class represents
  * 
@@ -45,6 +47,7 @@ public class Snake {
 		}	else {
 				System.out.println("-- Snake() ! EDT");
 			}
+
 		list = new LinkedList<Square>();
 		list.add(new Square(14, 15));
 		list.add(new Square(15, 15));
@@ -65,11 +68,13 @@ public class Snake {
 			turn();
 			if (canEat(frog)) {
 				eat();
+				SoundEffec.EAT.play();
 				frog.newFrog();
 			} else if (canMove()) {
 				move();
 			} else {
 				isDead = true;
+				SoundEffec.DEAD.play();
 			}
 		}
 	}
