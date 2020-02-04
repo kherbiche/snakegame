@@ -25,6 +25,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -90,16 +91,29 @@ public class GameFrame extends JFrame implements Constants {
 		Thread thread = new Thread(new Runnable() { // This Thread will exit exec from EDT
 			@Override
 			public void run() {
+				boolean gameOver = false;
 				while (true) {
-
 					if (SwingUtilities.isEventDispatchThread()) {
 						System.out.println("-- GameFrame() -> new Thread().run() In EDT");
 					}	else {
 							System.out.println("-- GameFrame() -> new Thread().run() ! EDT");
 						}
 
-					GameFrame.this.gameModel.calculate();
+					if (!gameOver) {
+						gameOver = GameFrame.this.gameModel.calculate();
+					} else {
+						Object[] options = {"Yes", "No"};
+						int x = JOptionPane.showOptionDialog(null, "Another party?","Title",
+                					JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
+						if(x==0) {
+							GameFrame.this.gameModel.reinit();
+							gameOver = false;
+							} else {
+								System.exit(0);
+							}
+					}
 					content.repaint();
+
 					try {
 						Thread.sleep(FPS);
 					} catch (InterruptedException e) {
