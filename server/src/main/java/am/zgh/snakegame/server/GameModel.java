@@ -52,7 +52,7 @@ public class GameModel {
 		gameOver = false;
 	}
 
-	public void calculate() {
+	public boolean calculate() {
 		if (SwingUtilities.isEventDispatchThread()) {
 			System.out.println("-- GameModel -> calculate() In EDT");
 		}	else {
@@ -66,6 +66,7 @@ public class GameModel {
 				SoundEffec.GAMEOVER.play();
 			}
 		}
+		return gameOver;
 	}
 
 	public void display(Graphics g) {
@@ -138,6 +139,12 @@ public class GameModel {
 		default:
 			return 50;
 		}
+	}
+
+	public void reinit() {
+		snake = new Snake();
+		frog = new Frog();
+		gameOver = false;
 	}
 
 	private int getLevel() {
