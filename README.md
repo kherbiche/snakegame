@@ -3,7 +3,8 @@
 # Snake game
  The famous Snake game coded with Java.
 
-![Snake](https://github.com/kherbiche/snakegame/tree/master/server/src/main/resources/snake.png?raw=true)
+#![Snake](https://github.com/kherbiche/snakegame/tree/master/server/src/main/resources/snake.png?raw=true)
+<img src="https://raw.githubusercontent.com/kherbiche/snakegame/master/server/src/main/resources/snake.png?raw=true" />
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine. Enjoy.
